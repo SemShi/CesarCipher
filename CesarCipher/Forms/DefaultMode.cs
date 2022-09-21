@@ -68,7 +68,7 @@ namespace CesarCipher.Forms
                 {
                     if (openMsg == (int)_alphabet[j])
                     {
-                        _encryption = _alphabet[(j - _shift) % _alphabet.Length];
+                        _decryption = _alphabet[(j - _shift) % _alphabet.Length];
                         _decryptedMsg += Char.ConvertFromUtf32(_encryption);
                         break;
                     }
