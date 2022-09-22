@@ -36,7 +36,9 @@ namespace CesarCipher
 
         private void LoadBruteforcePage(object sender, EventArgs e)
         {
-
+            Bruteforce bruteforce = new Bruteforce();
+            bruteforce.ShowDialog();
+            bruteforce.Dispose();
         }
 
         private void LoadFreqAnalysisPage(object sender, EventArgs e)

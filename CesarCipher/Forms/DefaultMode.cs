@@ -1,16 +1,14 @@
-﻿using System.Text;
+﻿using CesarCipher.Classes;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CesarCipher.Forms
 {
     public partial class DefaultMode : Form
     {
         #region Поля
-        private static char[] _alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".ToCharArray();
         private string _msg = "";
-        private string _encryptedMsg = "";
-        private string _decryptedMsg = "";
         private int _shift = 0;
-        private int _tmp = 0;
         #endregion
 
         #region Конструкторы
@@ -27,53 +25,14 @@ namespace CesarCipher.Forms
             if (!MsgSeparate()) return;
             if (((Button)sender).Name == "bt_EncryptMsg")
             {
-                _encryptedMsg = "";
                 tb_result.Text = "";
-                tb_result.Text = "Зашифрованное сообщение: " + OnEncrypt();
+                tb_result.Text = "Зашифрованное сообщение: " + Encrypter.OnEncrypt(_msg, _shift);
             }
             else if (((Button)sender).Name == "bt_DecryptMsg")
             {
-                _decryptedMsg = "";
                 tb_result.Text = "";
-                tb_result.Text = "Расшифрованное сообщение: " + OnDecrypt();
+                tb_result.Text = "Расшифрованное сообщение: " + Encrypter.OnDecrypt(_msg, _shift);
             }
-        }
-
-        private string OnEncrypt()
-        {
-            for (int i = 0; i < _msg.Length; i++)
-            {
-                int openMsg = (int)_msg[i];
-                for (int j = 0; j < _alphabet.Length; j++)
-                {
-                    if (openMsg == _alphabet[j])
-                    {
-                        _tmp = _alphabet[(j + _shift) % _alphabet.Length];
-                        _encryptedMsg += Char.ConvertFromUtf32(_tmp);
-                        break;
-                    }
-
-                }
-            }
-            return _encryptedMsg;
-        }
-
-        private string OnDecrypt()
-        {
-            for (int i = 0; i < _msg.Length; i++)
-            {
-                int openMsg = (int)_msg[i];
-                for (int j = 0; j < _alphabet.Length; j++)
-                {
-                    if (openMsg == (int)_alphabet[j])
-                    {
-                        _tmp = _alphabet[(j - _shift) % _alphabet.Length];
-                        _decryptedMsg += Char.ConvertFromUtf32(_tmp);
-                        break;
-                    }
-                }
-            }
-            return _decryptedMsg;
         }
 
         private bool MsgSeparate()
@@ -90,12 +49,14 @@ namespace CesarCipher.Forms
             if(_shift >= 1 && _shift <= 32) return true; 
             else tb_result.Text = "Внимание! Введено неверное значение сдвига."; return false;
         }
+
         #endregion
 
         #region Сохранение и загрузка из файла
         private void OnOpenFile(object sender, EventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Text Files | *.txt";
             file.ShowDialog();
             string path = file.FileName;
             if(string.IsNullOrWhiteSpace(path)) return;
@@ -112,7 +73,7 @@ namespace CesarCipher.Forms
             string path = file.FileName;
             if (string.IsNullOrWhiteSpace(path)) return;
             StreamWriter sr = new StreamWriter(path);
-            sr.Write(tb_msg.Text, Encoding.UTF8);
+            sr.Write(tb_result.Text, Encoding.UTF8);
             sr.Close();
         }
         #endregion
