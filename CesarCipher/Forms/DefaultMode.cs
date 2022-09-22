@@ -10,8 +10,7 @@ namespace CesarCipher.Forms
         private string _encryptedMsg = "";
         private string _decryptedMsg = "";
         private int _shift = 0;
-        private int _encryption = 0;
-        private int _decryption = 0;
+        private int _tmp = 0;
         #endregion
 
         #region Конструкторы
@@ -49,8 +48,8 @@ namespace CesarCipher.Forms
                 {
                     if (openMsg == _alphabet[j])
                     {
-                        _encryption = _alphabet[(j + _shift) % _alphabet.Length];
-                        _encryptedMsg += Char.ConvertFromUtf32(_encryption);
+                        _tmp = _alphabet[(j + _shift) % _alphabet.Length];
+                        _encryptedMsg += Char.ConvertFromUtf32(_tmp);
                         break;
                     }
 
@@ -68,8 +67,8 @@ namespace CesarCipher.Forms
                 {
                     if (openMsg == (int)_alphabet[j])
                     {
-                        _decryption = _alphabet[(j - _shift) % _alphabet.Length];
-                        _decryptedMsg += Char.ConvertFromUtf32(_encryption);
+                        _tmp = _alphabet[(j - _shift) % _alphabet.Length];
+                        _decryptedMsg += Char.ConvertFromUtf32(_tmp);
                         break;
                     }
                 }
@@ -99,6 +98,7 @@ namespace CesarCipher.Forms
             OpenFileDialog file = new OpenFileDialog();
             file.ShowDialog();
             string path = file.FileName;
+            if(string.IsNullOrWhiteSpace(path)) return;
             StreamReader sr = new StreamReader(path);
             tb_msg.Text = sr.ReadToEnd() + "/10";
             sr.Close();
@@ -110,6 +110,7 @@ namespace CesarCipher.Forms
             file.Filter = "Text Files | *.txt";
             file.ShowDialog();
             string path = file.FileName;
+            if (string.IsNullOrWhiteSpace(path)) return;
             StreamWriter sr = new StreamWriter(path);
             sr.Write(tb_msg.Text, Encoding.UTF8);
             sr.Close();
