@@ -43,7 +43,9 @@ namespace CesarCipher
 
         private void LoadFreqAnalysisPage(object sender, EventArgs e)
         {
-
+            FreqAnalysis freqAnalysis = new FreqAnalysis();
+            freqAnalysis.ShowDialog();
+            freqAnalysis.Dispose();
         }
     }
 }

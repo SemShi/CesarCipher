@@ -13,8 +13,8 @@ namespace CesarCipher.Classes
 			if (!char.IsLetter(ch))
 				return ch;
 
-			char offset = char.IsUpper(ch) ? 'А' : 'а';
-			return (char)((((ch + key) - offset) % 32) + offset);
+			char shift = char.IsUpper(ch) ? 'А' : 'а';
+			return (char)((((ch + key) - shift) % 32) + shift);
 		}
 
 		public static string OnEncrypt(string input, int key)

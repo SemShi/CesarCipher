@@ -7,24 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CesarCipher.Classes;
 
 namespace CesarCipher.Forms
 {
-    public partial class Bruteforce : Form
+    public partial class FreqAnalysis : Form
     {
-        public Bruteforce()
+        private char[] freqList = "оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё".ToCharArray();
+        public FreqAnalysis()
         {
             InitializeComponent();
         }
 
-        private void OnBruteStart(object sender, EventArgs e)
+        private void OnFreqStart(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tb_msg.Text)) return;
             tb_result.Text = "";
-            for(int i = 1; i <= 32; i++)
+
+        }
+
+        private void FreqInMsg()
+        {
+            for(int i = 0; i < freqList.Length; i++)
             {
-                tb_result.Text += $"Сдвиг={i}, расшифровка: " + Encrypter.OnDecrypt(tb_msg.Text, i) + ";" + Environment.NewLine;
+                int letter = (char)freqList[i];
+                int tmp = 0;
+                int count1 = 0;
+                int count2 = 0;
+                for (int j = 0; j < freqList.Length; j++)
+                {
+                    if (letter == freqList[j]) count1++; count2 = count1;
+                }
+                //zakonchil zdes
             }
         }
 
