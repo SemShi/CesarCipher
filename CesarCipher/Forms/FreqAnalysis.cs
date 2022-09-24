@@ -5,12 +5,14 @@ namespace CesarCipher.Forms
 {
     public partial class FreqAnalysis : Form
     {
-        private char[] freqList = "оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё".ToCharArray();
-        private char[] alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".ToCharArray();
+        private char[] freqList = "оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъ".ToCharArray();
+        private char[] alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя".ToCharArray();
         private char[] freqMsg;
         private int _shift;
+        private bool repeat_ignore = false;
+        private bool change_direction = false;
         private Dictionary<char, int> freqMsgList = new Dictionary<char, int>();
-        
+        private Dictionary<char, decimal> freqMsgLetters = new Dictionary<char, decimal>();
         public FreqAnalysis()
         {
             InitializeComponent();
@@ -19,6 +21,8 @@ namespace CesarCipher.Forms
         private void OnFreqStart(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tb_msg.Text)) return;
+            freqMsgList.Clear();
+            freqMsgLetters.Clear();
             tb_result.Text = "";
             FreqInMsg();
             FreqAnalisys();
@@ -33,46 +37,54 @@ namespace CesarCipher.Forms
                 freqMsgList.Add(item.Key, item.Value);
             }
 
-            string str = "";
-            foreach (var k in freqMsgList.Keys)
+            foreach (var item in freqMsgList)
             {
-                str += char.ConvertFromUtf32((int)k);
+                if (!char.IsLetter(item.Key)) continue;
+                freqMsgLetters.Add(item.Key, Math.Round(((decimal)item.Value / (decimal)tb_msg.Text.Length),5));
             }
-            freqMsg = str.ToCharArray();
+
+            string mostUsedLetter = "";
+            foreach (var item in freqMsgLetters.Keys)
+            {
+                mostUsedLetter += item.ToString();
+            }
+            freqMsg = mostUsedLetter.ToCharArray();
         }
 
         private void FreqAnalisys()
         {
-            int msgLetter = -1;
-            int ordLetter = -1;
-            int j = 0;
-            for(int i = 0; i < freqMsg.Length; i++)
+            if (!repeat_ignore)
             {
-                
-                //if (msgLetter >= 0 && ordLetter >= 0) break;
-                for (; j < freqList.Length; j++)
+                int letterFromMsg = -1;
+                int letterFromFreqAlph = -1;
+                for(int i = 0; i < freqMsg.Length; i++)
                 {
-                    if (msgLetter >= 0 && ordLetter >= 0) {
-                        msgLetter = -1;
-                        ordLetter = -1;
-                        break;
-                    } 
-                    for (int k = 0; k< alphabet.Length; k++)
+                    if (letterFromMsg >= 0 && letterFromFreqAlph >= 0) break;
+                    for (int j = 0; j < freqList.Length; j++)
                     {
-                        if (freqMsg[i] == alphabet[k]) msgLetter = k; //буква у залетает в переменную
-                        else if (freqList[j] == alphabet[k]) ordLetter = k; //буква о залетает в переменную
-                        if (msgLetter >= 0 && ordLetter >= 0) 
+                        if (letterFromMsg >= 0 && letterFromFreqAlph >= 0) break;
+                        for (int k = 0; k< alphabet.Length; k++)
                         {
-                            _shift = Math.Abs(ordLetter - msgLetter) % 32;
-                            tb_result.Text += $"Сдвиг={_shift}, расшифровка: " + Encrypter.OnDecrypt(tb_msg.Text, _shift) + ";" + Environment.NewLine;
-                            break;
-                        } 
+                            if (freqMsg[i] == alphabet[k]) letterFromMsg = k;
+                            else if (freqList[j] == alphabet[k]) letterFromFreqAlph = k;
+                            if (letterFromMsg >= 0 && letterFromFreqAlph >= 0) 
+                            {
+                                //repeat_ignore = true;
+                                bt_changeDirection.Enabled = true;
+                                if(change_direction) _shift = (32 - Math.Abs(letterFromMsg - letterFromFreqAlph)) % 32;
+                                else _shift = Math.Abs(letterFromMsg - letterFromFreqAlph) % 32;
+                                tb_result.Text = Encrypter.OnDecrypt(tb_msg.Text, _shift);
+                                break;
+                            }
+                        }
                     }
                 }
-                
             }
-
-            
+            else
+            {
+                _shift++;
+                tb_result.Text = Encrypter.OnDecrypt(tb_msg.Text, _shift);
+            }
         }
         #region Сохранение и загрузка из файла
         private void OnOpenFile(object sender, EventArgs e)
@@ -99,5 +111,11 @@ namespace CesarCipher.Forms
             sr.Close();
         }
         #endregion
+
+        private void tb_changeDirection_Click(object sender, EventArgs e)
+        {
+            change_direction = true;
+            bt_changeDirection.Enabled = false;
+        }
     }
 }

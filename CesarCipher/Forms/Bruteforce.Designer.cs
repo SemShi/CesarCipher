@@ -48,7 +48,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 36);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -58,8 +59,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tb_result);
-            this.splitContainer1.Size = new System.Drawing.Size(704, 284);
-            this.splitContainer1.SplitterDistance = 264;
+            this.splitContainer1.Size = new System.Drawing.Size(805, 379);
+            this.splitContainer1.SplitterDistance = 301;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -70,12 +72,13 @@
             this.tableLayoutPanel1.Controls.Add(this.bt_EncryptMsg, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(264, 284);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 379);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tb_msg
@@ -83,19 +86,22 @@
             this.tb_msg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_msg.Location = new System.Drawing.Point(3, 3);
+            this.tb_msg.Location = new System.Drawing.Point(3, 4);
+            this.tb_msg.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_msg.Multiline = true;
             this.tb_msg.Name = "tb_msg";
             this.tb_msg.PlaceholderText = "сообщение";
-            this.tb_msg.Size = new System.Drawing.Size(258, 136);
+            this.tb_msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tb_msg.Size = new System.Drawing.Size(295, 181);
             this.tb_msg.TabIndex = 1;
             // 
             // bt_EncryptMsg
             // 
             this.bt_EncryptMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bt_EncryptMsg.Location = new System.Drawing.Point(3, 145);
+            this.bt_EncryptMsg.Location = new System.Drawing.Point(3, 193);
+            this.bt_EncryptMsg.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bt_EncryptMsg.Name = "bt_EncryptMsg";
-            this.bt_EncryptMsg.Size = new System.Drawing.Size(258, 136);
+            this.bt_EncryptMsg.Size = new System.Drawing.Size(295, 182);
             this.bt_EncryptMsg.TabIndex = 2;
             this.bt_EncryptMsg.Text = "Расшифровать!";
             this.bt_EncryptMsg.Click += new System.EventHandler(this.OnBruteStart);
@@ -104,20 +110,23 @@
             // 
             this.tb_result.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_result.Location = new System.Drawing.Point(0, 0);
+            this.tb_result.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_result.Multiline = true;
             this.tb_result.Name = "tb_result";
             this.tb_result.ReadOnly = true;
             this.tb_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb_result.Size = new System.Drawing.Size(436, 284);
+            this.tb_result.Size = new System.Drawing.Size(499, 379);
             this.tb_result.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(704, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(805, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,31 +136,32 @@
             this.openFromFileToolStripMenuItem,
             this.saveToFileToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openFromFileToolStripMenuItem
             // 
             this.openFromFileToolStripMenuItem.Name = "openFromFileToolStripMenuItem";
-            this.openFromFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.openFromFileToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.openFromFileToolStripMenuItem.Text = "Open file";
             this.openFromFileToolStripMenuItem.Click += new System.EventHandler(this.OnOpenFile);
             // 
             // saveToFileToolStripMenuItem
             // 
             this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
-            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.saveToFileToolStripMenuItem.Text = "Save file";
             this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.OnSaveFile);
             // 
             // Bruteforce
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 311);
+            this.ClientSize = new System.Drawing.Size(805, 415);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Bruteforce";
             this.Text = "Метод перебора шифра";
             this.splitContainer1.Panel1.ResumeLayout(false);

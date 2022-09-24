@@ -26,12 +26,12 @@ namespace CesarCipher.Forms
             if (((Button)sender).Name == "bt_EncryptMsg")
             {
                 tb_result.Text = "";
-                tb_result.Text = "Зашифрованное сообщение: " + Encrypter.OnEncrypt(_msg, _shift);
+                tb_result.Text = Encrypter.OnEncrypt(_msg, _shift);
             }
             else if (((Button)sender).Name == "bt_DecryptMsg")
             {
                 tb_result.Text = "";
-                tb_result.Text = "Расшифрованное сообщение: " + Encrypter.OnDecrypt(_msg, _shift);
+                tb_result.Text = Encrypter.OnDecrypt(_msg, _shift);
             }
         }
 
