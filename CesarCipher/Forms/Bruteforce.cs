@@ -22,7 +22,7 @@ namespace CesarCipher.Forms
         {
             if (string.IsNullOrWhiteSpace(tb_msg.Text)) return;
             tb_result.Text = "";
-            for(int i = 1; i <= 32; i++)
+            for(int i = 1; i <= 31; i++)
             {
                 tb_result.Text += $"Сдвиг={i}, расшифровка: " + Encrypter.OnDecrypt(tb_msg.Text, i) + ";" + Environment.NewLine;
             }

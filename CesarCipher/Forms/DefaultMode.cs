@@ -54,7 +54,7 @@ namespace CesarCipher.Forms
                 _shift = int.Parse(pair[1]);
             }
             catch { tb_result.Text = "Внимание! Введено неверное значение сдвига."; return false; }
-            if(_shift >= 1 && _shift <= 32) return true; 
+            if(_shift >= 1 && _shift <= 31) return true; 
             else tb_result.Text = "Внимание! Введено неверное значение сдвига."; return false;
         }
 
