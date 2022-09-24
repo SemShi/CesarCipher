@@ -38,18 +38,23 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 36);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -60,7 +65,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tb_result);
-            this.splitContainer1.Size = new System.Drawing.Size(805, 379);
+            this.splitContainer1.Size = new System.Drawing.Size(805, 381);
             this.splitContainer1.SplitterDistance = 301;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
@@ -72,7 +77,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tb_msg, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.bt_EncryptMsg, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.bt_DecryptMsg, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -80,7 +85,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 379);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 381);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tb_msg
@@ -94,16 +99,16 @@
             this.tb_msg.Name = "tb_msg";
             this.tb_msg.PlaceholderText = "сообщение/сдвиг";
             this.tb_msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb_msg.Size = new System.Drawing.Size(295, 181);
+            this.tb_msg.Size = new System.Drawing.Size(295, 182);
             this.tb_msg.TabIndex = 1;
             // 
             // bt_EncryptMsg
             // 
             this.bt_EncryptMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bt_EncryptMsg.Location = new System.Drawing.Point(3, 193);
+            this.bt_EncryptMsg.Location = new System.Drawing.Point(3, 194);
             this.bt_EncryptMsg.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bt_EncryptMsg.Name = "bt_EncryptMsg";
-            this.bt_EncryptMsg.Size = new System.Drawing.Size(295, 86);
+            this.bt_EncryptMsg.Size = new System.Drawing.Size(295, 87);
             this.bt_EncryptMsg.TabIndex = 2;
             this.bt_EncryptMsg.Text = "Зашифровать сообщение";
             this.bt_EncryptMsg.UseVisualStyleBackColor = true;
@@ -112,7 +117,7 @@
             // bt_DecryptMsg
             // 
             this.bt_DecryptMsg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bt_DecryptMsg.Location = new System.Drawing.Point(3, 287);
+            this.bt_DecryptMsg.Location = new System.Drawing.Point(3, 289);
             this.bt_DecryptMsg.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bt_DecryptMsg.Name = "bt_DecryptMsg";
             this.bt_DecryptMsg.Size = new System.Drawing.Size(295, 88);
@@ -130,11 +135,12 @@
             this.tb_result.Name = "tb_result";
             this.tb_result.ReadOnly = true;
             this.tb_result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb_result.Size = new System.Drawing.Size(499, 379);
+            this.tb_result.Size = new System.Drawing.Size(499, 381);
             this.tb_result.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
@@ -168,13 +174,31 @@
             this.saveToFileToolStripMenuItem.Text = "Save to file";
             this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.OnSaveFile);
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.menuStrip1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer2.Size = new System.Drawing.Size(805, 415);
+            this.splitContainer2.SplitterDistance = 30;
+            this.splitContainer2.TabIndex = 2;
+            // 
             // DefaultMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 415);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.splitContainer2);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DefaultMode";
@@ -188,8 +212,12 @@
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -205,5 +233,6 @@
         private Button bt_EncryptMsg;
         private Button bt_DecryptMsg;
         private TextBox tb_result;
+        private SplitContainer splitContainer2;
     }
 }

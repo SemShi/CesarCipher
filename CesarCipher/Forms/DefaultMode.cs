@@ -38,6 +38,14 @@ namespace CesarCipher.Forms
         private bool MsgSeparate()
         {
             if (string.IsNullOrWhiteSpace(tb_msg.Text)) return false;
+            foreach (char ch in tb_msg.Text)
+            {
+                if ((int)ch >= 97 && (int)ch <= 122)
+                {
+                    tb_result.Text = "Внимание! Используйте только русские буквы!";
+                    return false;
+                }
+            }
             _msg = tb_msg.Text;
             string[] pair = _msg.Split('/');
             _msg = pair[0];
